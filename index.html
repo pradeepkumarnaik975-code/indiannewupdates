@@ -1,98 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indian New Updates | Latest India News</title>
 
-  <title>Indian New Updates | Latest News & Breaking Headlines</title>
+<meta name="description" content="Indian New Updates brings you breaking news, trending stories, and daily updates from India.">
+<meta name="robots" content="index, follow">
 
-  <meta name="description" content="Indian New Updates provides the latest Indian news, breaking headlines, politics, technology, entertainment, sports, and trending stories." />
-  <meta name="keywords" content="India news, latest Indian news, breaking news India, Indian updates" />
-  <meta name="author" content="Indian New Updates" />
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: #f4f6f8;
-      color: #333;
-    }
-
-    header {
-      background: #ff6f00;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.2rem;
-    }
-
-    header p {
-      margin-top: 8px;
-      font-size: 1.1rem;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-
-    section {
-      background: #fff;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    }
-
-    h2 {
-      margin-top: 0;
-      color: #ff6f00;
-    }
-
-    footer {
-      background: #222;
-      color: #ccc;
-      text-align: center;
-      padding: 15px;
-      font-size: 0.9rem;
-    }
-  </style>
+<style>
+:root{
+--bg:#f5f5f5;--text:#222;--card:#fff;--primary:#138808
+}
+body.dark{
+--bg:#121212;--text:#eee;--card:#1e1e1e
+}
+body{margin:0;font-family:system-ui;background:var(--bg);color:var(--text)}
+header{background:linear-gradient(90deg,#ff9933,#138808);color:#fff;padding:16px;text-align:center}
+nav{display:flex;justify-content:space-between;padding:10px;background:var(--card)}
+nav a{text-decoration:none;color:var(--text);font-weight:600;margin-right:10px}
+.container{max-width:1000px;margin:auto;padding:15px}
+.news{display:grid;grid-template-columns:1fr;gap:15px}
+.card{background:var(--card);padding:15px;border-radius:8px}
+.card h3{margin:8px 0;color:var(--primary)}
+.card small{opacity:.7}
+footer{text-align:center;padding:15px;font-size:.85rem}
+@media(min-width:700px){.news{grid-template-columns:repeat(2,1fr)}}
+</style>
 </head>
 
 <body>
+<header>
+<h1>Indian New Updates</h1>
+<p>Breaking News & Daily Updates from India</p>
+</header>
 
-  <header>
-    <h1>Indian New Updates</h1>
-    <p>Latest News & Breaking Updates from India</p>
-  </header>
+<nav>
+<div>
+<a href="/">Home</a>
+</div>
+<button onclick="document.body.classList.toggle('dark')">🌙</button>
+</nav>
 
-  <main>
-    <section>
-      <h2>Welcome</h2>
-      <p>
-        <strong>Indian New Updates</strong> brings you the most recent and reliable
-        news from across India. Stay informed with breaking headlines, current
-        affairs, politics, technology, entertainment, sports, and trending topics.
-      </p>
-    </section>
+<div class="container">
+<div id="news" class="news"></div>
+</div>
 
-    <section>
-      <h2>Our Mission</h2>
-      <p>
-        Our goal is to provide fast, accurate, and easy-to-read news updates so
-        you never miss what’s happening in India.
-      </p>
-    </section>
-  </main>
+<footer>© 2026 Indian New Updates</footer>
 
-  <footer>
-    <p>&copy; 2026 Indian New Updates. All rights reserved.</p>
-  </footer>
-
+<script>
+fetch("news.json")
+.then(res=>res.json())
+.then(data=>{
+const box=document.getElementById("news");
+data.forEach(n=>{
+box.innerHTML+=`
+<div class="card">
+<small>${n.category} • ${n.date}</small>
+<h3>${n.title}</h3>
+<p>${n.excerpt}</p>
+<a href="post.html?id=${n.id}">Read more →</a>
+</div>`;
+});
+});
+</script>
 </body>
 </html>
