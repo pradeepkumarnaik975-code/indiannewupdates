@@ -1,0 +1,10 @@
+[
+  {
+    "id": "welcome-post",
+    "title": "Welcome to Indian New Updates",
+    "excerpt": "Indian New Updates is now live with fast, mobile-friendly news updates.",
+    "content": "Welcome to Indian New Updates. This website is powered by GitHub Pages and designed for fast loading, mobile-first experience. You can publish new posts by editing the news.json file anytime.",
+    "category": "General",
+    "date": "2026-02-03"
+  }
+]
