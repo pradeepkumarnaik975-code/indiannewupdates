@@ -70,30 +70,38 @@
   </main>
 
   <script>
-    function toggleDark() {
-      document.body.classList.toggle("dark");
-    }
+  // Load saved theme
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+  }
 
-    fetch("news.json")
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById("posts");
-        container.innerHTML = "";
+  // Toggle dark mode
+  function toggleDark() {
+    document.body.classList.toggle("dark");
+    localStorage.setItem(
+      "theme",
+      document.body.classList.contains("dark") ? "dark" : "light"
+    );
+  }
 
-        data.reverse().forEach(post => {
-          const div = document.createElement("div");
-          div.className = "post";
-          div.innerHTML = `
+  // Load news posts
+  fetch("news.json")
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById("posts");
+      container.innerHTML = "";
+
+      data.reverse().forEach(post => {
+        container.innerHTML += `
+          <div class="post">
             <h2>${post.title}</h2>
             <div class="meta">${post.category} • ${post.date}</div>
             <p>${post.excerpt}</p>
-          `;
-          container.appendChild(div);
-        });
-      })
-      .catch(err => {
-        document.getElementById("posts").innerHTML = "Failed to load news.";
+          </div>
+        `;
       });
+    });
   </script>
 </body>
 </html>
